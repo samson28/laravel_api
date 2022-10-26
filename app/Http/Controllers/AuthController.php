@@ -20,26 +20,38 @@ class AuthController extends Controller
             'email' => 'required|string|email',
             'password' => 'required|string',
         ]);
-        $credentials = $request->only('email', 'password');
+        // $credentials = $request->only('email', 'password');
 
-        $token = Auth::attempt($credentials);
-        if (!$token) {
-            return response()->json([
-                'status' => 'error',
-                'message' => 'Unauthorized',
-            ], 401);
+        // $token = Auth::attempt($credentials);
+        // if (!$token) {
+        //     return response()->json([
+        //         'status' => 'error',
+        //         'message' => 'Unauthorized',
+        //     ], 401);
+        // }
+        $credentials = request(['email', 'password']);
+
+        if (! $token = Auth::attempt($credentials)) {
+            return response()->json(['error' => 'Unauthorized'], 401);
         }
 
-        $user = Auth::user();
-        return response()->json([
-                'status' => 'success',
-                'user' => $user,
-                'authorisation' => [
-                    'token' => $token,
-                    'type' => 'bearer',
-                ]
-            ]);
+        return $this->respondWithToken($token);
 
+        // $user = Auth::user();
+        // return response()->json([
+        //         'status' => 'success',
+        //         'user' => $user,
+        //         'authorisation' => [
+        //             'token' => $token,
+        //             'type' => 'bearer',
+        //         ]
+        //     ]);
+
+    }
+
+    public function current()
+    {
+        return response()->json(Auth::user());
     }
 
     public function register(Request $request){
@@ -69,7 +81,7 @@ class AuthController extends Controller
 
     public function logout()
     {
-        Auth::logout();
+         Auth::logout();
         return response()->json([
             'status' => 'success',
             'message' => 'Successfully logged out',
@@ -78,13 +90,23 @@ class AuthController extends Controller
 
     public function refresh()
     {
+        // return response()->json([
+        //     'status' => 'success',
+        //     'user' => Auth::user(),
+        //     'authorisation' => [
+        //         'token' => Auth::refresh(),
+        //         'type' => 'bearer',
+        //     ]
+        // ]);
+        return $this->respondWithToken(Auth::refresh());
+    }
+
+    protected function respondWithToken($token)
+    {
         return response()->json([
-            'status' => 'success',
-            'user' => Auth::user(),
-            'authorisation' => [
-                'token' => Auth::refresh(),
-                'type' => 'bearer',
-            ]
+            'access_token' => $token,
+            'token_type' => 'bearer',
+            'expires_in' => Auth::factory()->getTTL() * 60
         ]);
     }
 

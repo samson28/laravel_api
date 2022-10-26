@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('sex');
             $table->date('date_de_naissance');
             $table->integer('tel');
-            $table->mail('mail');
+            $table->string('mail');
             $table->date('date_de_prise_de_fonction');
             $table->string('fonction');
             $table->timestamps();

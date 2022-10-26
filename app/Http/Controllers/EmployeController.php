@@ -28,8 +28,8 @@ class EmployeController extends Controller
             'prenom' => 'required|string|max:255',
             'sex' => 'required|string|max:1',
             'date_de_naissance' => 'required|date',
-            'tel' => 'required|integer|unique:employe',
-            'mail' => 'required|email:rfc,dns|unique:employe',
+            'tel' => 'required|integer',
+            'mail' => 'required|email:rfc,dns',
             'date_de_prise_de_fonction' => 'required|date|after:date_de_naissance',
             'fonction' => 'required|string|max:255',
 

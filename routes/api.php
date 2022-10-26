@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\EmployeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,14 +25,15 @@ Route::controller(AuthController::class)->group(function () {
     Route::post('register', 'register');
     Route::post('logout', 'logout');
     Route::post('refresh', 'refresh');
+    Route::get('current', 'current');
 
 });
 
-Route::controller(TodoController::class)->group(function () {
+Route::controller(EmployeController::class)->group(function () {
     Route::get('employes', 'index');
     Route::post('employe', 'store');
     Route::get('employe/{id}', 'show');
     Route::put('employe/{id}', 'update');
     Route::delete('employe/{id}', 'destroy');
-    Route::post('employe', 'search');
+    Route::post('employe/shearch', 'search');
 });
