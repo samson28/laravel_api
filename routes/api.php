@@ -26,3 +26,12 @@ Route::controller(AuthController::class)->group(function () {
     Route::post('refresh', 'refresh');
 
 });
+
+Route::controller(TodoController::class)->group(function () {
+    Route::get('employes', 'index');
+    Route::post('employe', 'store');
+    Route::get('employe/{id}', 'show');
+    Route::put('employe/{id}', 'update');
+    Route::delete('employe/{id}', 'destroy');
+    Route::post('employe', 'search');
+});
