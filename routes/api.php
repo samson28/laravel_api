@@ -35,5 +35,5 @@ Route::controller(EmployeController::class)->group(function () {
     Route::get('employe/{id}', 'show');
     Route::put('employe/{id}', 'update');
     Route::delete('employe/{id}', 'destroy');
-    Route::post('employe/shearch', 'search');
+    Route::post('employe/search', 'search');
 });
