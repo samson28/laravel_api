@@ -30,10 +30,10 @@ Route::controller(AuthController::class)->group(function () {
 });
 
 Route::controller(EmployeController::class)->group(function () {
-    Route::get('employes', 'index');
-    Route::post('employe', 'store');
-    Route::get('employe/{id}', 'show');
-    Route::put('employe/{id}', 'update');
-    Route::delete('employe/{id}', 'destroy');
+    Route::get('employe/all', 'index');
+    Route::post('employe/store', 'store');
+    Route::get('employe/show/{id}', 'show');
+    Route::put('employe/update/{id}', 'update');
+    Route::delete('employe/delete/{id}', 'destroy');
     Route::post('employe/search', 'search');
 });
