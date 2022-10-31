@@ -27,10 +27,9 @@ class EmployeController extends Controller
             'nom' => 'required|string|max:255',
             'prenom' => 'required|string|max:255',
             'sex' => 'required|string|max:1',
-            'date_de_naissance' => 'required|date',
+            'age' => 'required|integer',
             'tel' => 'required|integer',
             'mail' => 'required|email:rfc,dns',
-            'date_de_prise_de_fonction' => 'required|date|after:date_de_naissance',
             'fonction' => 'required|string|max:255',
 
         ]);
@@ -39,10 +38,9 @@ class EmployeController extends Controller
             'nom' => $request->nom,
             'prenom' => $request->prenom,
             'sex' => $request->sex,
-            'date_de_naissance' => $request->date_de_naissance,
+            'age' => $request->age,
             'tel' => $request->tel,
             'mail' => $request->mail,
-            'date_de_prise_de_fonction' => $request->date_de_prise_de_fonction,
             'fonction' => $request->fonction,
         ]);
 
@@ -81,10 +79,9 @@ class EmployeController extends Controller
             'nom' => 'required|string|max:255',
             'prenom' => 'required|string|max:255',
             'sex' => 'required|string|max:1',
-            'date_de_naissance' => 'required|date',
+            'age' => 'required|integer',
             'tel' => 'required|integer|unique:employe',
             'mail' => 'required|email:rfc,dns|unique:employe',
-            'date_de_prise_de_fonction' => 'required|date|after:date_de_naissance',
             'fonction' => 'required|string|max:255',
         ]);
 
@@ -92,10 +89,9 @@ class EmployeController extends Controller
         $employe->nom = $request->nom;
         $employe->prenom = $request->prenom;
         $employe->sex = $request->sex;
-        $employe->date_de_naissance = $request->date_de_naissance;
+        $employe->age = $request->age;
         $employe->tel = $request->tel;
         $employe->mail = $request->mail;
-        $employe->date_de_prise_de_fonction = $request->date_de_prise_de_fonction;
         $employe->fonction = $request->fonction;
         $employe->save();
 

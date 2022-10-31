@@ -33,7 +33,7 @@ Route::controller(EmployeController::class)->group(function () {
     Route::get('employe/all', 'index');
     Route::post('employe/store', 'store');
     Route::get('employe/show/{id}', 'show');
-    Route::put('employe/update/{id}', 'update');
+    Route::post('employe/update/{id}', 'update');
     Route::delete('employe/delete/{id}', 'destroy');
     Route::post('employe/search', 'search');
 });

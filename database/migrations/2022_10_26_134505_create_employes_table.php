@@ -18,10 +18,9 @@ return new class extends Migration
             $table->string('nom');
             $table->string('prenom');
             $table->string('sex');
-            $table->date('date_de_naissance');
+            $table->integer('age');
             $table->integer('tel');
             $table->string('mail');
-            $table->date('date_de_prise_de_fonction');
             $table->string('fonction');
             $table->timestamps();
         });
