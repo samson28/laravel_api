@@ -65,7 +65,7 @@ class EmployeController extends Controller
         $request->validate([
             'tips' => 'required|string|max:255',
         ]);
-        $employe = Employe::where('nom','like','%'.$request->tips.'%')->where('prenom','like','%'.$request->tips.'%')->get();
+        $employe = Employe::where('nom','like','%'.$request->tips.'%')->orWhere('prenom','like','%'.$request->tips.'%')->get();
 
         return response()->json([
             'status' => 'success',
@@ -80,8 +80,8 @@ class EmployeController extends Controller
             'prenom' => 'required|string|max:255',
             'sex' => 'required|string|max:1',
             'age' => 'required|integer',
-            'tel' => 'required|integer|unique:employe',
-            'mail' => 'required|email:rfc,dns|unique:employe',
+            'tel' => 'required|integer',
+            'mail' => 'required|email:rfc,dns',
             'fonction' => 'required|string|max:255',
         ]);
 
